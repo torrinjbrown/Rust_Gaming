@@ -1,0 +1,32 @@
+//This is the package for gaming library in rust
+use macroquad::prelude::*;
+
+//Calling the library through # and the folder
+#[macroquad::main("My game")]
+
+//Creating a async function to make a continous loop for the background 
+async fn main() {
+
+    // Creating a keyboard movement for the pixel, the mut x and y will be the axis that the pixel will be moving
+    let mut x = screen_width() / 2.0;
+    let mut y = screen_height() / 2.0;
+    loop {
+        //This is for if the keyboard is press on each arrow  it should move in that direction, still need to work out the kinks
+        if is_key_down(KeyCode::Right) {
+            x += 1.0;
+        }
+        if is_key_down(KeyCode::Left) {
+            y += 1.0;
+        }
+        if is_key_down(KeyCode::Down) {
+            x += 1.0;
+        }
+        if is_key_down(KeyCode::Up) {
+            y -= 1.0;
+        }
+
+        draw_circle(x, y, 16.0, YELLOW);
+
+        next_frame().await    
+    }
+}
